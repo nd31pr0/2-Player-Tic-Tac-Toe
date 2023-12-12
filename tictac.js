@@ -139,3 +139,62 @@ const Gameboard = (() => {
   // GameController.initializeGame(player1, player2, Gameboard);
   // GameController.handleMove(0);
   // GameController.endGame();
+
+
+
+  const DisplayController = (() => {
+    // Private properties
+    const boardContainer = document.querySelector("#board-container");
+    const statusDisplay = document.querySelector("#status-display");
+    const restartButton = document.querySelector("#restart-button");
+  
+    // Public methods
+    const renderBoard = () => {
+      const board = gameboard.getBoard();
+      boardContainer.innerHTML = "";
+  
+      board.forEach((cell, index) => {
+        const cellElement = document.createElement("div");
+        cellElement.classList.add("cell");
+        cellElement.textContent = cell || ""; // Display X or O in the cell
+        cellElement.addEventListener("click", () => cellClickHandler(index));
+        boardContainer.appendChild(cellElement);
+      });
+    };
+  
+    const updateStatus = (message) => {
+      statusDisplay.textContent = message;
+    };
+  
+    const showResult = (result) => {
+      statusDisplay.textContent = result;
+      restartButton.style.display = "block";
+    };
+  
+    const initListeners = () => {
+      restartButton.addEventListener("click", () => {
+        restartButton.style.display = "none";
+        GameController.endGame();
+        renderBoard();
+      });
+    };
+  
+    const cellClickHandler = (index) => {
+      if (!gameboard.isGameOver()) {
+        GameController.handleMove(index);
+      }
+    };
+  
+    return {
+      renderBoard,
+      updateStatus,
+      showResult,
+      initListeners,
+    };
+  })();
+  
+  // Example usage:
+  // DisplayController.renderBoard();
+  // DisplayController.updateStatus("Player X's turn");
+  // DisplayController.showResult("Player O wins!");
+  // DisplayController.initListeners();
