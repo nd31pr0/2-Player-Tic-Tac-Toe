@@ -62,3 +62,23 @@ const Gameboard = (() => {
   // Gameboard.isFull();
   // Gameboard.resetBoard();
   
+  const Player = (name, symbol) => {
+    // Properties
+    const playerName = name;
+    const playerSymbol = symbol;
+  
+    // Public methods
+    const getName = () => playerName;
+    const getSymbol = () => playerSymbol;
+  
+    return {
+      getName,
+      getSymbol,
+    };
+  };
+  
+  // Example usage:
+  // const player1 = Player("Player 1", "X");
+  // const player2 = Player("Player 2", "O");
+  // const playerName = player1.getName();
+  // const playerSymbol = player2.getSymbol();
