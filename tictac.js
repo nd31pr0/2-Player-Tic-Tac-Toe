@@ -82,3 +82,60 @@ const Gameboard = (() => {
   // const player2 = Player("Player 2", "O");
   // const playerName = player1.getName();
   // const playerSymbol = player2.getSymbol();
+
+  const GameController = (() => {
+    // Private properties
+    let players = [];
+    let currentPlayer = null;
+    let gameboard = null;
+  
+    // Public methods
+    const initializeGame = (player1, player2, board) => {
+      players = [player1, player2];
+      gameboard = board;
+      currentPlayer = players[0];
+      displayController.updateStatus(`${currentPlayer.getName()}'s turn`);
+    };
+  
+    const switchPlayer = () => {
+      currentPlayer = currentPlayer === players[0] ? players[1] : players[0];
+    };
+  
+    const handleMove = (index) => {
+      if (!gameboard.makeMove(currentPlayer, index)) {
+        return; // Cell already occupied, do nothing
+      }
+  
+      displayController.renderBoard();
+      
+      if (gameboard.checkWin(currentPlayer)) {
+        displayController.showResult(`${currentPlayer.getName()} wins!`);
+        return;
+      }
+  
+      if (gameboard.isFull()) {
+        displayController.showResult("It's a tie!");
+        return;
+      }
+  
+      switchPlayer();
+      displayController.updateStatus(`${currentPlayer.getName()}'s turn`);
+    };
+  
+    const endGame = () => {
+      players = [];
+      currentPlayer = null;
+      gameboard.resetBoard();
+    };
+  
+    return {
+      initializeGame,
+      handleMove,
+      endGame,
+    };
+  })();
+  
+  // Example usage:
+  // GameController.initializeGame(player1, player2, Gameboard);
+  // GameController.handleMove(0);
+  // GameController.endGame();
