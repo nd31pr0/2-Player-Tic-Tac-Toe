@@ -10,10 +10,12 @@ const Player = (name, symbol) => {
 const Gameboard = (() => {
     let board = Array(9).fill(null);
 
+    //Initialize board with nulls
     const initializeBoard = () => {
         board = Array(9).fill(null);
     };
 
+    // add player symbol to board
     const makeMove = (player, index) => {
         if (board[index] === null) {
             board[index] = player.getSymbol();
