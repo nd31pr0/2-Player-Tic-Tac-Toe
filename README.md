@@ -6,7 +6,7 @@
 The project builds a tic tac toe game to be played by two players.
 
 ## Sample Output of the work
-
+![Alt text](output.png)
 
 
 ## The Odin Project (Web development) Completed projects
