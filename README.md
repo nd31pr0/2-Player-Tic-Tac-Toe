@@ -3,7 +3,7 @@
 
 ## Description
 
-The project builds a tic tac toe game to be played by two players.
+The project builds a tic tac toe game to be played by two players. The Players take turns in dropping their token on the board and whoever has three tokens either horizontally, vertically or diagonally wins the game.
 
 ## Sample Output of the work
 ![Alt text](output.png)
